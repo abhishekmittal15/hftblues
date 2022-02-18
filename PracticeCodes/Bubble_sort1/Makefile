@@ -1,9 +1,9 @@
 top_module=
 top_file=
+c_file=
 
 src_directory=src_bsv
-path_files=.:./src_bsv:%/Libraries
-
+path_files=./$(src_directory):%/Libraries 
 
 sim_dir=build_bsim
 info_dir=build_bsim
@@ -38,7 +38,7 @@ compile:
 	@echo "-------------"
 
 link: 
-	bsc $(bsv_link_flags) -e $(top_module) -o ./$(build_dir)/$(top_module)_bsim
+	bsc $(bsv_link_flags)  -e $(top_module) -o ./$(src_directory)/$(top_module)_bsim ./$(src_directory)/$(c_file).c
 	@echo "-------------"
 	@echo "Linked"
 	@echo "-------------"
@@ -47,7 +47,7 @@ simulate:
 	@echo "-------------"
 	@echo "Results"
 	@echo "-------------"
-	@./$(build_dir)/$(top_module)_bsim
+	./$(src_directory)/$(top_module)_bsim
 
 ball: compile link simulate
 
@@ -70,7 +70,7 @@ v_compile:
 	@echo "--------------";
 
 v_link:
-	bsc $(verilog_link_flags) -e $(top_module) -o ./$(v_build_dir)/$(top_module)_vsim $(top_module).v
+	bsc $(verilog_link_flags) -e $(top_module) -o ./$(v_build_dir)/$(top_module)_vsim $./$(build_dir)/$ (top_module).v
 	@echo "--------------";
 	@echo "Linked";
 	@echo "--------------";

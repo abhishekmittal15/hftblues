@@ -1,16 +1,12 @@
+package testbench;
 
+module mktestbench;
 
-module mkTestBench (Empty);
+    // instantiate a module 
 
-    // rule rl_print_answer();
-    rule rl_print_answer; 
-        $display("Deep Thought says: Hello, World! The answer is 42");
-        // $finish;
-    endrule
-
-    rule rl_print_duplicate;
-        $display("Bye Bye");
-        $finish;
+    rule print_rule;
+        let x <- deepthought.getAnswer;
+        display("The answer is %d",x);
     endrule
 
 endmodule
