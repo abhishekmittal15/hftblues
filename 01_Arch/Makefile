@@ -3,6 +3,7 @@ top_file=
 c_file=
 
 src_directory=src_bsv
+test_files=test_files
 path_files=./$(src_directory):%/Libraries 
 
 sim_dir=build_bsim
@@ -38,7 +39,7 @@ compile:
 	@echo "-------------"
 
 link: 
-	bsc $(bsv_link_flags)  -e $(top_module) -o ./$(src_directory)/$(top_module)_bsim ./$(src_directory)/$(c_file).c
+	bsc $(bsv_link_flags)  -e $(top_module) -o ./$(top_module)_bsim $(c_file)
 	@echo "-------------"
 	@echo "Linked"
 	@echo "-------------"
@@ -47,8 +48,7 @@ simulate:
 	@echo "-------------"
 	@echo "Results"
 	@echo "-------------"
-	cd $(src_directory)
-	./$(top_module)_bsim
+	./$(top_module)_bsim 
 
 ball: compile link simulate
 
